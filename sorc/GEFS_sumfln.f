@@ -251,9 +251,10 @@ cc
 cc
       call mpi_barrier (mc_comp,ierr)
 cc
-      call mpi_alltoallv(works,sendcounts,sdispls,mpi_real4,
+      call mpi_alltoallv(works,sendcounts,sdispls,mpi_real4, !gwv
      x                   workr,recvcounts,sdispls,mpi_r_mpi,
      x                   mc_comp,ierr)
+      call mpi_barrier (mc_comp,ierr)
 cc
 !$omp parallel do private(j,lat,lmax,nvar,ndisp,lval)
       do j=1,lats_node
