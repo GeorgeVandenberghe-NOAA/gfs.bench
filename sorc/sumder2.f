@@ -237,10 +237,9 @@ cc
 cc
       call mpi_barrier (mc_comp,ierr)
 cc
-      call mpi_alltoallv(works,sendcounts,sdispls,mpi_r_mpi, !gwv
+      call mpi_alltoallv(works,sendcounts,sdispls,mpi_r_mpi,
      x                   workr,recvcounts,sdispls,mpi_r_mpi,
      x                   mc_comp,ierr)
-      call mpi_barrier(  mc_comp,ierr)
 cc
       do j=1,lats_node
          lat = global_lats(ipt_lats_node-1+j)
@@ -450,10 +449,9 @@ cc
             sdispls(node) = (node-1) * 2*ls_dim*workdim*nvars
       end do
       call mpi_barrier (mc_comp,ierr)
-      call mpi_alltoallv(works,sendcounts,sdispls,mpi_r_mpi, !gwv
+      call mpi_alltoallv(works,sendcounts,sdispls,mpi_r_mpi,
      x                   workr,recvcounts,sdispls,mpi_r_mpi,
      x                   mc_comp,ierr)
-      call mpi_barrier(  mc_comp,ierr)
 !$omp parallel do private(j,lat,lmax,nvar,ndisp,lval)
       do j=1,lats_node
          lat = global_lats(ipt_lats_node-1+j)
@@ -733,10 +731,9 @@ cc
 cc
       call mpi_barrier (mc_comp,ierr)
 cc
-      call mpi_alltoallv(works,sendcounts,sdispls,mpi_r_mpi, !gwv
+      call mpi_alltoallv(works,sendcounts,sdispls,mpi_r_mpi,
      x                   workr,recvcounts,sdispls,mpi_r_mpi,
      x                   mc_comp,ierr)
-      call mpi_barrier(  mc_comp,ierr)
 cc
       do j=1,lats_node
          lat = global_lats(ipt_lats_node-1+j)
@@ -948,10 +945,9 @@ c
             sdispls(node) = (node-1) * 2*ls_dim*workdim*nvars
       end do
       call mpi_barrier (mc_comp,ierr)
-      call mpi_alltoallv(works,sendcounts,sdispls,mpi_r_mpi, !gwv
+      call mpi_alltoallv(works,sendcounts,sdispls,mpi_r_mpi,
      x                   workr,recvcounts,sdispls,mpi_r_mpi,
      x                   mc_comp,ierr)
-      call mpi_barrier(  mc_comp,ierr)
 !$omp parallel do private(j,lat,lmax,nvar,ndisp,lval)
       do j=1,lats_node
          lat = global_lats(ipt_lats_node-1+j)

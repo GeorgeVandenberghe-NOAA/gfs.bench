@@ -178,10 +178,9 @@ cc
 cc
       call mpi_barrier (mc_comp,ierr)
 cc
-      call mpi_alltoallv(works,sendcounts,sdispls,mpi_r_mpi, !gwv
+      call mpi_alltoallv(works,sendcounts,sdispls,mpi_r_mpi,
      x                   workr,recvcounts,sdispls,mpi_r_mpi,
      x                   mc_comp,ierr)
-      call mpi_barrier (mc_comp,ierr)
 cc
       num_threads=num_parthds()
       nvar_thread_max=(nvars+num_threads-1)/num_threads

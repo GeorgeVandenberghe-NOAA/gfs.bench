@@ -38,10 +38,9 @@ c
         nsend=lats_node_a_max
 c$$$        print*,' nsend = ',nsend
  
-        call mpi_alltoall(tmps,nsend,mpi_a_def, !gwv
+        call mpi_alltoall(tmps,nsend,mpi_a_def,
      x                     tmpr,nsend,mpi_a_def,
      x                     mc_comp,ierr)
-      call mpi_barrier(  mc_comp,ierr)
 !!
  
 !sela   do node=1,nodes
@@ -104,10 +103,9 @@ c
         nsend=lats_node_r_max
 c$$$        print*,' nsend = ',nsend
  
-        call mpi_alltoall(tmps,nsend,mpi_a_def, !gwv
+        call mpi_alltoall(tmps,nsend,mpi_a_def,
      x                     tmpr,nsend,mpi_a_def,
-     x                     mc_comp,ierr) 
-       call mpi_barrier(                    mc_comp,ierr) 
+     x                     mc_comp,ierr)
 !!
  
 !sela   do node=1,nodes

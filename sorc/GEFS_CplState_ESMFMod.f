@@ -195,10 +195,9 @@
      Cpl_Int_State%trieo_ls_max(j) = 1.1
  END DO
 
- CALL mpi_alltoall(Cpl_Int_State%trieo_ls_max, Cpl_Int_State%TRIEO_LSTOT_SIZ2, MPI_REAL8, & !gwv
+ CALL mpi_alltoall(Cpl_Int_State%trieo_ls_max, Cpl_Int_State%TRIEO_LSTOT_SIZ2, MPI_REAL8, &
                    Cpl_Int_State%trieo_ls_ini, Cpl_Int_State%TRIEO_LSTOT_SIZ2, MPI_REAL8, &
                    Cpl_Int_State%mpi_comm_cplcomp, rc1)
-                   call mpi_barrier(Cpl_Int_State%mpi_comm_cplcomp, rc1)
 
  IF(ESMF_LogMsgFoundError(rc1, "Get ESMF State - TRIEO_LS_ST_INI")) THEN
      rcfinal = ESMF_FAILURE
@@ -228,10 +227,9 @@
      Cpl_Int_State%trieo_ls_max(j) = 1.1
  END DO
 
- CALL mpi_alltoall(Cpl_Int_State%trieo_ls_max, Cpl_Int_State%TRIEO_LSTOT_SIZ2, MPI_REAL8, & !gwv
+ CALL mpi_alltoall(Cpl_Int_State%trieo_ls_max, Cpl_Int_State%TRIEO_LSTOT_SIZ2, MPI_REAL8, &
                    Cpl_Int_State%trieo_ls,     Cpl_Int_State%TRIEO_LSTOT_SIZ2, MPI_REAL8, &
                    Cpl_Int_State%mpi_comm_cplcomp, rc1)
-                   call mpi_barrier(Cpl_Int_State%mpi_comm_cplcomp, rc1)
 
  IF(ESMF_LogMsgFoundError(rc1, "Gete ESMF State - TRIEO_LS_ST")) THEN
      rcfinal = ESMF_FAILURE

@@ -171,10 +171,9 @@ KEMAX(3)=1001.1375*1.0
 !DHOU, 12/10/2007, Added Jul_day (Jullian Day) as a new argument of Step2.
  CALL Cal_Jul_Day(Jul_Day,year,month,day,hour,hh)
 
- CALL mpi_alltoall(cst%trieo_ls_w1,  cst%TRIEO_LSTOT_SIZ2, MPI_REAL8, & !gwv
+ CALL mpi_alltoall(cst%trieo_ls_w1,  cst%TRIEO_LSTOT_SIZ2, MPI_REAL8, &
                    cst%trieo_ls_max, cst%TRIEO_LSTOT_SIZ2, MPI_REAL8, &
                    cst%mpi_comm_cplcomp, rc1)
-               call mpi_barrier(     cst%mpi_comm_cplcomp, rc1)
 
   PRINT*, 'Start calling STEP2_2' 
  CALL GEFS_Sto_Per_Scheme_Step2(cst, 1, 1, 2, 0, rp1, Jul_Day, KEMAX, &
@@ -195,10 +194,9 @@ KEMAX(3)=1001.1375*1.0
 !GRIDUSE, 1=S1, 2=S2; Convert the state S1/S2 from spectral to grid and  and back to spec.
 !QADJUST, 0=NO, 1=YES; Adjust the q array so that q>=0 everywhere.
 
- CALL mpi_alltoall(cst%trieo_ls_max,cst%TRIEO_LSTOT_SIZ2, MPI_REAL8,  & !gwv
+ CALL mpi_alltoall(cst%trieo_ls_max,cst%TRIEO_LSTOT_SIZ2, MPI_REAL8,  &
                    cst%trieo_ls_w1, cst%TRIEO_LSTOT_SIZ2, MPI_REAL8,  &
                    cst%mpi_comm_cplcomp, rc1)
-                   call mpi_barrier(cst%mpi_comm_cplcomp, rc1)
 
 !!ENDIF
 
@@ -207,10 +205,9 @@ KEMAX(3)=1001.1375*1.0
                            cst%Cpl_Run_Calling_Number,1.0)                       
 !                          cst%Cpl_Run_Calling_Number,rp1)                       
 
- CALL mpi_alltoall(cst%trieo_ls,     cst%TRIEO_LSTOT_SIZ2, MPI_REAL8, & !gwv
+ CALL mpi_alltoall(cst%trieo_ls,     cst%TRIEO_LSTOT_SIZ2, MPI_REAL8, &
                    cst%trieo_ls_max, cst%TRIEO_LSTOT_SIZ2, MPI_REAL8, &
                    cst%mpi_comm_cplcomp, rc1)
-            call mpi_barrier(cst%mpi_comm_cplcomp,rc1)
 
 ! Print to check the model state variables after adding Pert. KE will be printed.
 ! PRINT*, 'Start calling STEP2 for STATE after Pert' 

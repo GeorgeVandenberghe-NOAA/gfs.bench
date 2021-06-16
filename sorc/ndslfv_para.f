@@ -47,13 +47,12 @@
       call mpi_barrier (mc_comp,ierr)
 !     print *,' mpi_barrier ierr=',ierr
       
-!     call mpi_alltoallv(works,lensend,locsend,mpi_r_mpi_r, !gwv
+!     call mpi_alltoallv(works,lensend,locsend,mpi_r_mpi_r,
 !    &                   workr,lenrecv,locrecv,mpi_r_mpi_r,
 !    &                   mc_comp,ierr)
-      call mpi_alltoallv(works,lensend,locsend,mpi_r_mpi, !gwv
+      call mpi_alltoallv(works,lensend,locsend,mpi_r_mpi,
      &                   workr,lenrecv,locrecv,mpi_r_mpi,
      &                   mc_comp,ierr)
-      call mpi_barrier(   mc_comp,ierr)
 !     print *,' mpi_alltoallv ierr=',ierr
      
 !
@@ -126,13 +125,12 @@
       enddo
 !
       call mpi_barrier (mc_comp,ierr)
-!     call mpi_alltoallv(works,lensend,locsend,mpi_r_mpi_r, !gwv
+!     call mpi_alltoallv(works,lensend,locsend,mpi_r_mpi_r,
 !    &                   workr,lenrecv,locrecv,mpi_r_mpi_r,
 !    &                   mc_comp,ierr)
-      call mpi_alltoallv(works,lensend,locsend,mpi_r_mpi, !gwv
+      call mpi_alltoallv(works,lensend,locsend,mpi_r_mpi,
      &                   workr,lenrecv,locrecv,mpi_r_mpi,
      &                   mc_comp,ierr)
-      call mpi_barrier(   mc_comp,ierr)
 !
 !$omp parallel do private(n,mn,i,j,k)
       do n=1,nodes 

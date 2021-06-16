@@ -238,10 +238,9 @@ ccxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
             sdispls(node) = (node-1)   * n2 * ls_dim * workdim
       end do
 !
-      call mpi_alltoallv(works,sendcounts,sdispls,mpi_r_mpi, !gwv
+      call mpi_alltoallv(works,sendcounts,sdispls,mpi_r_mpi,
      &                   workr,recvcounts,sdispls,mpi_r_mpi,
      &                   mc_comp,ierr)
-      call mpi_barrier(  mc_comp,ierr)
 !
 !$omp parallel do private(j,lat,lmax,nvar,lval,n2)
       do j=1,lats_node
