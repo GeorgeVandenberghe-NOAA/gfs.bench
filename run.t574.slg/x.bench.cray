@@ -1,0 +1,46 @@
+#!/bin/bash 
+#BSUB -J T574
+#BSUB -W 0:30
+#BSUB -extsched 'CRAYLINUX[]' -R '1*{order[slots] select[craylinux && !vnode]} + 288*{select[craylinux && vnode]span[ptile=24] cu[type=cabinet]}'
+#BSUB -P "GFS-T2O"
+#BSUB -e run.t574.slg.cray.stderr.%J
+#BSUB -o run.t574.slg.cray.stdout.%J
+#BSUB -q "debug"
+#BSUB -M 768
+
+
+module load PrgEnv-intel/5.2.82 
+module load intel/18.1.163 cray-mpich
+module list
+
+export MKL_CBWR=AVX2
+export OMP_NUM_THREADS=2
+export MKL_NUM_THREADS=1
+
+ulimit -s unlimited
+ulimit -a
+
+export ATP_ENABLED=0
+export MALLOC_MMAP_MAX_=0
+export MALLOC_TRIM_THRESHOLD_=$(( 128 * 1024 * 1024 ))
+export KMP_AFFINITY=disabled
+export KMP_STACKSIZE=2G
+
+set -x
+
+export EXPERIMENT=run.t574.cray.has.144m.2t
+export RUNFCSTDIR=/gpfs/hps3/ptmp/Michael.A.Young/$EXPERIMENT
+
+rm -r    $RUNFCSTDIR
+mkdir -p $RUNFCSTDIR
+
+
+cp ../sorc/global_fcst $RUNFCSTDIR/.
+cp ../data/* $RUNFCSTDIR/.
+
+cd       $RUNFCSTDIR
+
+cp sig_ini                 sig_ini2
+
+time aprun -j1 -n 144 -N 12 -d 2 -cc depth ./global_fcst > out.cray
+

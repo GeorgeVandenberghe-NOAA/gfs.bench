@@ -1,0 +1,39 @@
+#!/bin/bash 
+#BSUB -J T574
+#BSUB -W 0:30
+#BSUB -n 140
+#BSUB -R span[ptile=14]
+#BSUB -P GFS-T2O
+#BSUB -x
+#BSUB -e run.t574.slg.dell.stderr.%J
+#BSUB -o run.t574.slg.dell.stdout.%J
+#BSUB -q "debug"
+
+module load ips/18.0.1.163 impi/18.0.1
+module list
+
+export OMP_NUM_THREADS=2
+export MKL_NUM_THREADS=1
+export I_MPI_HYDRA_BOOTSTRAP=lsf
+export I_MPI_LSF_USE_COLLECTIVE_LAUNCH=1
+
+export MKL_CBWR=AVX2
+
+export KMP_STACKSIZE=1024m
+export MPICH_ALLTOALL_THROTTLE=0
+
+set -x
+
+export EXPERIMENT=run.t574.ph3.dell.144m.2t
+export RUNFCSTDIR=/gpfs/dell2/emc/modeling/noscrub/Michael.A.Young/bench.files/$EXPERIMENT
+
+rm -r    $RUNFCSTDIR
+mkdir -p $RUNFCSTDIR
+
+cp ../sorc/global_fcst $RUNFCSTDIR/.
+cp ../data/* $RUNFCSTDIR/.
+
+cd       $RUNFCSTDIR
+cp sig_ini                 sig_ini2
+
+mpiexec.hydra -l -n 140 ./global_fcst > out.dell

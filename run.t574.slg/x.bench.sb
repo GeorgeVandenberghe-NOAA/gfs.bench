@@ -1,0 +1,45 @@
+#!/bin/bash 
+#BSUB -J T574
+#BSUB -a poe
+#BSUB -W 0:30
+#BSUB -n 144
+#BSUB -R span[ptile=8]
+#BSUB -R affinity[core(2)]
+#BSUB -P GFS-T2O
+#BSUB -network type=sn_all:mode=US
+#BSUB -x
+#BSUB -e run.t574.slg.ph1.sb.stderr.%J
+#BSUB -o run.t574.slg.ph1.sb.stdout.%J
+#BSUB -q "debug"
+
+module load load ics/17.0.3 ibmpe
+module list
+
+export OMP_NUM_THREADS=2
+export MKL_NUM_THREADS=1
+export MKL_CBWR=AVX
+
+export KMP_STACKSIZE=1024m
+export MP_LABELIO=yes
+export MP_COREFILE_FORMAT=core.txt
+export MPICH_ALLTOALL_THROTTLE=0
+export MP_MPILIB=mpich2
+export MP_SINGLE_THREAD=yes
+
+set -x
+
+export EXPERIMENT=run.t574.ph1.sb.144m.2t
+export RUNFCSTDIR=/ptmpp2/Michael.A.Young/$EXPERIMENT
+
+rm -r    $RUNFCSTDIR
+mkdir -p $RUNFCSTDIR
+
+cp ../sorc/global_fcst $RUNFCSTDIR/.
+cp ../data/* $RUNFCSTDIR/.
+
+cd       $RUNFCSTDIR
+
+cp sig_ini                 sig_ini2
+
+mpirun.lsf ./global_fcst > out.ph1.sb
+

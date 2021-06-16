@@ -1,0 +1,114 @@
+#!/bin/ksh
+set -x
+
+machine=$1
+export USE_MKL=YES
+
+###. /usrx/local/Modules/3.2.10/init/ksh 
+module list 
+
+ if [ $USE_MKL = YES ] ; then
+   export ALIGN="-align array32byte"              # For bit reproducibility on wcoss
+   export PRECISE=source
+ fi
+ export BASE=$(pwd)/../nnp/lib
+ echo $BASE
+#---------------------------------------------------------
+if [ $machine = ibm -o $machine = dell ] ; then # For WCOSS IBM idataplex or Dell
+#---------------------------------------------------------
+ export ESMF_LIB=$BASE/esmf/lib/libO/Linux.intel.64.intelmpi.default
+ export ESMF_MOD=$BASE/esmf/mod/modO/Linux.intel.64.intelmpi.default
+#---------------------------------------------------------
+elif [ $machine = cray ] ; then # For WCOSS cray
+#---------------------------------------------------------
+ export ESMF_LIB=$BASE/esmf/lib/libO/Unicos.intel.64.mpi.default
+ export ESMF_MOD=$BASE/esmf/mod/modO/Unicos.intel.64.mpi.default
+##  module load cray-mpich
+ fi
+#---------------------------------------------------------
+
+export ALIGN=${ALIGN:-""}
+export PRECISE=${PRECISE:-precise}
+#
+sorc_dir=$(pwd)
+exec_dir=$(pwd)
+#
+#-------------------------------------------------------------------
+#-------------------------------------------------------------------
+ export CFLAGS="-DLINUX"
+ export ARCHM=
+ export PGSZM=
+ export FRRM=-FR
+
+ export debug=${debug:-NO}
+ if [ $debug = YES ] ; then
+   export OPTSB="-g -O0 -check all -ftrapuv -convert big_endian $ALIGN -fp-stack-check -fstack-protector -heap-arrays -recursive $ALIGN"  
+   export OPTSBT="$OPTSB -traceback"
+   export EXECM=$exec_dir/global_fcst_dbg
+ else
+   if [ $machine = ibm ]; then
+    export OPTSB="-g -O3 -convert big_endian $ALIGN -fp-model $PRECISE -xAVX "  
+    export OPTSBX="-g -O3 -convert big_endian $ALIGN -fp-model $PRECISE -xAVX "  
+   elif [ $machine = dell -o $machine = cray ]; then
+    export OPTSB="-g -O3 -convert big_endian $ALIGN -fp-model $PRECISE  -ftz -fast-transcendentals -no-prec-div -no-prec-sqrt -mkl -xCORE-AVX2 "  
+    export OPTSBX="-g -O3 -convert big_endian $ALIGN -fp-model $PRECISE -ftz -fast-transcendentals -no-prec-div -no-prec-sqrt -mkl -xCORE-AVX2"  
+   fi
+   export OPTSBT=$OPTSB
+   export OPTSBTX=$OPTSBX
+   export EXECM=$exec_dir/global_fcst
+ fi
+
+
+ export OPTSIOM="$OPTSBT -r8 -qopenmp"
+ export OPTSIOX="$OPTSBTX -r8 -qopenmp"
+ export OPTSM="$OPTSBT -r8 -qopenmp"
+ export OPTS_SERM="$OPTSBT -r8 $ARCHM"
+ export OPTS90M="$OPTSBT   -r8 "
+ export OPTS90AM="$OPTSBT  -r8 "
+ export LDFLAGSM=$PGSZM
+
+ #----------------------------
+ export FINC=-I$ESMF_MOD
+ export FINCM="-I$BASE/incmod/sigio_4 -I$BASE/incmod/w3emc_d "
+ export LIBSM="-L$BASE -lsigio_4 -lbacio_4 -lnemsio -lsp_d -lw3emc_d -lw3nco_d -lrt -lstdc++ -L$ESMF_LIB -lesmf"
+
+if [ $machine = ibm -o $machine = dell ] ; then
+   export F77M=mpiifort
+   export F90M=mpiifort
+   export F77B=$F77M
+   export FCC=mpcc
+   export LDRM=mpiifort
+   if [ $USE_MKL = YES ] ; then
+      export LDFLAGSM="$PGSZM -qopenmp -lmkl_intel_lp64 -lmkl_core -lmkl_sequential -lpthread -lm"
+   else
+      export LDFLAGSM="$PGSZM -qopenmp "
+   fi
+ #----------------------------
+  if [ $machine = dell ] ; then
+   export FCC=mpiicc
+  fi
+ elif [ $machine = cray ] ; then
+   export F77M=ftn
+   export F90M=ftn
+   export F77B=$F77M
+   export FCC=cc
+   export LDRM=ftn
+##-lm -lipgo -ldecimal -lstdc++ -lgcc -lgcc_eh -lirc -lsvml -lgcc -lgcc_eh -lirc_s 
+   export LDFLAGSM="$PGSZM -mkl -qopenmp -lm -lipgo -ldecimal -lstdc++ -lgcc -lgcc_eh -lirc -lsvml -lirc_s "
+else
+ echo 'machine not supported at this time'
+ exit
+ fi
+
+#-------------------------------------------------------------------
+#-------------------------------------------------------------------
+
+echo $F77M
+####make -f Makefile clean
+if [ $USE_MKL = YES ] ; then
+  make -f Makefile
+else
+  make -f Makefile model-mpi-port
+fi
+##make -f Makefile install
+##make -f Makefile clean

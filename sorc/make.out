@@ -1,0 +1,96 @@
++ machine=cray
++ USE_MKL=YES
++ export USE_MKL
++ module list
+makefile.sh.cleanup[8]: module: not found [No such file or directory]
++ [ YES '=' YES ]
++ ALIGN='-align array32byte'
++ export ALIGN
++ PRECISE=source
++ export PRECISE
++ pwd
++ BASE=/gpfs/hps3/emc/global/noscrub/Michael.A.Young/gsm.v12.0.3.gefs.ops/sorc/../nnp/lib
++ export BASE
++ echo /gpfs/hps3/emc/global/noscrub/Michael.A.Young/gsm.v12.0.3.gefs.ops/sorc/../nnp/lib
+/gpfs/hps3/emc/global/noscrub/Michael.A.Young/gsm.v12.0.3.gefs.ops/sorc/../nnp/lib
++ [ cray '=' ibm -o cray '=' dell ]
++ [ cray '=' cray ]
++ ESMF_LIB=/gpfs/hps3/emc/global/noscrub/Michael.A.Young/gsm.v12.0.3.gefs.ops/sorc/../nnp/lib/esmf/lib/libO/Unicos.intel.64.mpi.default
++ export ESMF_LIB
++ ESMF_MOD=/gpfs/hps3/emc/global/noscrub/Michael.A.Young/gsm.v12.0.3.gefs.ops/sorc/../nnp/lib/esmf/mod/modO/Unicos.intel.64.mpi.default
++ export ESMF_MOD
++ ALIGN='-align array32byte'
++ export ALIGN
++ PRECISE=source
++ export PRECISE
++ pwd
++ sorc_dir=/gpfs/hps3/emc/global/noscrub/Michael.A.Young/gsm.v12.0.3.gefs.ops/sorc
++ pwd
++ exec_dir=/gpfs/hps3/emc/global/noscrub/Michael.A.Young/gsm.v12.0.3.gefs.ops/sorc
++ CFLAGS=-DLINUX
++ export CFLAGS
++ ARCHM=''
++ export ARCHM
++ PGSZM=''
++ export PGSZM
++ FRRM=-FR
++ export FRRM
++ debug=NO
++ export debug
++ [ NO '=' YES ]
++ [ cray '=' ibm ]
++ [ cray '=' dell -o cray '=' cray ]
++ OPTSB='-g -O3 -convert big_endian -align array32byte -fp-model source  -ftz -fast-transcendentals -no-prec-div -no-prec-sqrt -mkl -xCORE-AVX2 '
++ export OPTSB
++ OPTSBX='-g -O3 -convert big_endian -align array32byte -fp-model source -ftz -fast-transcendentals -no-prec-div -no-prec-sqrt -mkl -xCORE-AVX2'
++ export OPTSBX
++ OPTSBT='-g -O3 -convert big_endian -align array32byte -fp-model source  -ftz -fast-transcendentals -no-prec-div -no-prec-sqrt -mkl -xCORE-AVX2 '
++ export OPTSBT
++ OPTSBTX='-g -O3 -convert big_endian -align array32byte -fp-model source -ftz -fast-transcendentals -no-prec-div -no-prec-sqrt -mkl -xCORE-AVX2'
++ export OPTSBTX
++ EXECM=/gpfs/hps3/emc/global/noscrub/Michael.A.Young/gsm.v12.0.3.gefs.ops/sorc/global_fcst
++ export EXECM
++ OPTSIOM='-g -O3 -convert big_endian -align array32byte -fp-model source  -ftz -fast-transcendentals -no-prec-div -no-prec-sqrt -mkl -xCORE-AVX2  -r8 -qopenmp'
++ export OPTSIOM
++ OPTSIOX='-g -O3 -convert big_endian -align array32byte -fp-model source -ftz -fast-transcendentals -no-prec-div -no-prec-sqrt -mkl -xCORE-AVX2 -r8 -qopenmp'
++ export OPTSIOX
++ OPTSM='-g -O3 -convert big_endian -align array32byte -fp-model source  -ftz -fast-transcendentals -no-prec-div -no-prec-sqrt -mkl -xCORE-AVX2  -r8 -qopenmp'
++ export OPTSM
++ OPTS_SERM='-g -O3 -convert big_endian -align array32byte -fp-model source  -ftz -fast-transcendentals -no-prec-div -no-prec-sqrt -mkl -xCORE-AVX2  -r8 '
++ export OPTS_SERM
++ OPTS90M='-g -O3 -convert big_endian -align array32byte -fp-model source  -ftz -fast-transcendentals -no-prec-div -no-prec-sqrt -mkl -xCORE-AVX2    -r8 '
++ export OPTS90M
++ OPTS90AM='-g -O3 -convert big_endian -align array32byte -fp-model source  -ftz -fast-transcendentals -no-prec-div -no-prec-sqrt -mkl -xCORE-AVX2   -r8 '
++ export OPTS90AM
++ LDFLAGSM=''
++ export LDFLAGSM
++ FINC=-I/gpfs/hps3/emc/global/noscrub/Michael.A.Young/gsm.v12.0.3.gefs.ops/sorc/../nnp/lib/esmf/mod/modO/Unicos.intel.64.mpi.default
++ export FINC
++ FINCM='-I/gpfs/hps3/emc/global/noscrub/Michael.A.Young/gsm.v12.0.3.gefs.ops/sorc/../nnp/lib/incmod/sigio_4 -I/gpfs/hps3/emc/global/noscrub/Michael.A.Young/gsm.v12.0.3.gefs.ops/sorc/../nnp/lib/incmod/w3emc_d '
++ export FINCM
++ LIBSM='-L/gpfs/hps3/emc/global/noscrub/Michael.A.Young/gsm.v12.0.3.gefs.ops/sorc/../nnp/lib -lsigio_4 -lbacio_4 -lnemsio -lsp_d -lw3emc_d -lw3nco_d -lrt -lstdc++ -L/gpfs/hps3/emc/global/noscrub/Michael.A.Young/gsm.v12.0.3.gefs.ops/sorc/../nnp/lib/esmf/lib/libO/Unicos.intel.64.mpi.default -lesmf'
++ export LIBSM
++ [ cray '=' ibm -o cray '=' dell ]
++ [ cray '=' cray ]
++ F77M=ftn
++ export F77M
++ F90M=ftn
++ export F90M
++ F77B=ftn
++ export F77B
++ FCC=cc
++ export FCC
++ LDRM=ftn
++ export LDRM
++ LDFLAGSM=' -mkl -qopenmp -lm -lipgo -ldecimal -lstdc++ -lgcc -lgcc_eh -lirc -lsvml -lirc_s '
++ export LDFLAGSM
++ echo ftn
+ftn
++ [ YES '=' YES ]
++ make -f Makefile
+ftn -o /gpfs/hps3/emc/global/noscrub/Michael.A.Young/gsm.v12.0.3.gefs.ops/sorc/global_fcst machine.o num_parthds.o iounitdef.o physpara.o physcons.o funcphys.o rascnvv2.o mersenne_twister.o resol_def.o gg_def.o vert_def.o sig_io.o date_def.o layout1.o layout_grid_tracers.o namelist_def.o namelist_soilveg.o coordinate_def.o tracer_const_h-new.o reduce_lons_grid_module.o mpi_def.o semi_lag_def.o deldifs_def.o bfilt_def.o sfcio_module.o gfsio_module.o gfsio_def.o d3d_def.o nstio_module.o module_nst_parameters.o module_nst_water_prop.o module_nst_model.o calpreciptype.o module_bfmicrophysics.o kinds.o peuc.o pran.o prana.o layout_lag.o slglat.o slgshr.o pmgrid.o get_cd_hyb_slg.o sltini_all.o set_halos_lag_sn.o getcon_lag.o gfidi_speed.o setlats_lag.o gfidi_tracers.o slgscan_all_redgg.o get_topo_grid_grad.o mpi_tracers_a_to_b.o gloopa_tracers.o ndslfv_base.o ndslfv_para.o ndslfv_ppm_pack.o sicdif_hyb_slg.o patterngenerator.o iau_module.o stoch_data.o mpi_more.o cmp.comm.o atm.comm.o tiles.o NameList_ESMFMod.o Sfc_Var_ESMFMod.o Nst_Var_ESMFMod.o GFS_ErrMsgMod.o Lib_ESMFStateAddGetMod.o GFS_InternalState_ESMFMod.o GFS_ESMFStateMod.o GFS_GetCf_ESMFMod.o GFS_Initialize_ESMFMod.o GFS_Run_ESMFMod.o GFS_Finalize_ESMFMod.o GFS_AddParameterToStateMod.o GFS_GridComp_ESMFMod.o Grid_ESMFCreate.o StartTimeGet_ESMF.o Ensemble_sub.o GEFS_Cpl_InternalState_ESMFMod.o GEFS_CplState_ESMFMod.o GEFS_four2fln.o GEFS_uvoedz.o GEFS_uveodz.o GEFS_sumfln.o GEFS_dozeuv.o GEFS_dezouv.o GEFS_Sto_Per_Scheme_Step1.o GEFS_Sto_Per_Scheme_Step2.o GEFS_Cpl_Run_ESMFMod.o GEFS_Cpl_ESMFMod.o GEFS_GetParameterFromStateMod.o GEFS_CplComp_ESMFMod.o GFS_ESMF.o Cal_Sto_Coef.o GEFS_bcst_global.o get_cd_hyb.o get_am_bm_hyb.o get_cd_hyb_gc.o get_am_bm_hyb_gc.o setlats.o getysk.o getysk_gc.o ifshuff.o digifilt.o gcycle.o wrtout.o grid_collect.o GEFS_four2grid_thread.o info.o four_to_grid.o damp_speed.o deldifs.o deldifs_tracers.o fix_fields.o spect_fields.o delnpe.o delnpo.o dezouv.o impadj_slg.locl.o impadj_hyb.locl.o impadj_hyb.locl_gc.o dozeuv.o epslon.o filtr1eo.o filtr2eo.o get_ls_node.o get_lats_node_shuff_a_fix.o get_lats_node_shuff_r_fix.o getcon.o gfidi_hyb.o gfidi_hyb_gc.o gfidi_hyb_gc_h-new.o gfidi_hyb_gc_ndsl.o ndslfv_ppm_advecth1.o ndslfv_ppm_advecth.o glats.o gloopa_opt_gg.o lon_lat_para.o compns.o gozrineo.o pln2eo.o rms_spect.o uvoedz.o mpi_quit.o sicdif_hyb.o sicdif_hyb_gc.o dotstep_tracers.o ensemble_wrt.o four2fln_gg.o sortrx.o sumfln_slg_gg.o sumder2_slg_gg.o triseori.o uveodz.o ysminv.o fftpack.o byteswap.o  ozinterp.o ozphys.o gloopb.o gbphys.o gbphys_adv_hyb_gc.o gbphys_adv_hyb_gc_h-new.o dcyc2.o dcyc2.pre.rad.o set_soilveg.o sfc_drv.o sfc_sice.o sfc_ocean.o sfc_nst.o sfc_diff.o sfc_diag.o sflx.o moninq.o moninq1.o moninedmf.o mfpbl.o gwdps.o rayleigh_damp.o gwdc.o sascnvn.o cnvc90.o shalcnv.o gscond.o gscondp.o precpd.o precpdp.o get_prs.o gsmddrive.o omegtes.o omegtes_gc.o hyb2press.o hyb2press_gc.o get_pattern.o radlw_param.o radlw_datatb.o radlw_main.o radsw_param.o radsw_datatb.o radsw_main.o radiation_astronomy.o radiation_aerosols.o radiation_gases.o radiation_clouds.o radiation_surface.o grrad.o rad_initialize.o gloopr.o mygather.o mpi_GV.o read_fix.o gribit.o wrt3d_hyb.o wrtsfc.o para_fixio_w.o para_nstio_w.o sfcsub.o treadeo.io.o treadeo.gfsio.o grid_to_spec.o spect_to_grid.o spect_tv_enthalpy_ps.o twriteeo.o spect_write.o -L/gpfs/hps3/emc/global/noscrub/Michael.A.Young/gsm.v12.0.3.gefs.ops/sorc/../nnp/lib -lsigio_4 -lbacio_4 -lnemsio -lsp_d -lw3emc_d -lw3nco_d -lrt -lstdc++ -L/gpfs/hps3/emc/global/noscrub/Michael.A.Young/gsm.v12.0.3.gefs.ops/sorc/../nnp/lib/esmf/lib/libO/Unicos.intel.64.mpi.default -lesmf  -mkl -qopenmp -lm -lipgo -ldecimal -lstdc++ -lgcc -lgcc_eh -lirc -lsvml -lirc_s 
+/opt/intel/compilers_and_libraries_2017.3.191/linux/mkl/lib/intel64/libmkl_core.a(mkl_semaphore.o): In function `mkl_serv_load_inspector':
+mkl_semaphore.c:(.text+0x123): warning: Using 'dlopen' in statically linked applications requires at runtime the shared libraries from the glibc version used for linking
+Warning:
+ libraries from PE_LIBSCI will be ignored because they conflict with -mkl.
+

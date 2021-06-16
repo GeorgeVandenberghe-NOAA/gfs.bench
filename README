@@ -1,0 +1,58 @@
+The GFS contains the following subdirectories
+
+1. sorc - source code
+2. verify - verification of results
+3. nnp - libraries
+4. data - all data including initial conditions needed to run the forecast model
+5. run.t574.slg - run scripts and standard out files
+
+  Building the libraries
+    
+    The script called build.sh builds the ncep and 3rd party library esmf
+    for the intel compiler.  The script is executed with 'build.sh
+    intel' Users need to check and modify if necessary the compile
+    variables in nnp/lib_3rdparty/install_3rdparty.sh and in
+    nnp/lib_ncep/install_nceplibs.sh before executing build.sh.  The
+    compiled libraries will appear in nnp/lib.  
+
+    For example on the current WCOSS IBM system:
+    cd nnp 
+    module load ics/17.0.3
+    build.sh intel
+
+    and on the current WCOSS Cray system:
+    cd nnp
+    module load PrgEnv-intel/5.2.82 
+    module rm intel
+    module load intel/18.1.163 cray-mpich
+    build.sh intel.cray
+ 
+    and on current WCOSS Dell system:
+    cd nnp
+    module load ips/18.0.1.163 impi/18.0.1
+    build.sh intel
+
+  Building the GFS (using same compiler level as the library build)
+  cd sorc 
+  makefile.sh.bench <ibm,cray,dell> this
+  takes one argument which identifies the build system for the WCOSS
+  ibm , cray, or dell systems.
+
+When it finishes successfully the executable global_fcst will appear
+in sorc directory.  The makefile.sh.bench uses the intel compiler.
+
+  Running GFS T574
+
+The run scripts are in gfs/run.t574.slg.  You will need to set
+RUNFCSTDIR to your run directory.  A sample script for WCOSS IBM 
+is x.bench.ibm, x.bench.cray for WCOSS Cray, and x.bench.dell for WCOSS dell system.
+The length of the forecast run is set by FHMAX in the file gfs_namelist located in
+the data subdirectory; it is set to 240 hours.  
+Standard out files are out.ibm, out.cray, and out.dell.
+
+Verification
+See README in the verify subdirectory
+
+
+       
+    
