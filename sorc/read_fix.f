@@ -955,9 +955,10 @@ c
 !jfe    call mpi_alltoall(tmps,nsend,mpi_r_mpi,
 !jfe &                    tmpr,nsend,mpi_r_mpi,
 !jfe &                    mc_comp,ierr)
-        call mpi_alltoall(tmps,nsend,mpi_r_def,
+        call mpi_alltoall(tmps,nsend,mpi_r_def, !gwv
      &                    tmpr,nsend,mpi_r_def,
      &                    mc_comp,ierr)
+      call mpi_barrier(   mc_comp,ierr)
 !!
         ilat=1
         do node=1,nodes

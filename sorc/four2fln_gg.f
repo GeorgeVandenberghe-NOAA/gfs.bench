@@ -155,9 +155,10 @@
 !
       call mpi_barrier (mc_comp,ierr)
 !
-      call mpi_alltoallv(works,sendcounts,sdispls,mpi_r_mpi,
+      call mpi_alltoallv(works,sendcounts,sdispls,mpi_r_mpi, !gwv
      x                   workr,recvcounts,sdispls,mpi_r_mpi,
      x                   mc_comp,ierr)
+      call mpi_barrier (mc_comp,ierr)
 !
       num_threads     = min(num_parthds(),nvars)
       nvar_thread_max = (nvars+num_threads-1)/num_threads

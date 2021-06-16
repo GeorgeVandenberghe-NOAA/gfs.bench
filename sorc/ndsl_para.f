@@ -49,9 +49,10 @@
 !     call mpi_alltoallv(works,lensend,locsend,mpi_r_mpi_r,
 !    &                   workr,lenrecv,locrecv,mpi_r_mpi_r,
 !    &                   mc_comp,ierr)
-      call mpi_alltoallv(works,lensend,locsend,mpi_r_mpi,
+      call mpi_alltoallv(works,lensend,locsend,mpi_r_mpi, !gwv
      &                   workr,lenrecv,locrecv,mpi_r_mpi,
      &                   mc_comp,ierr)
+      call mpi_barrier (mc_comp,ierr)
      
 !
 !$omp parallel do private(n,mn,i,j,jj,lat1,lat2,k)
@@ -126,9 +127,10 @@
 !     call mpi_alltoallv(works,lensend,locsend,mpi_r_mpi_r,
 !    &                   workr,lenrecv,locrecv,mpi_r_mpi_r,
 !    &                   mc_comp,ierr)
-      call mpi_alltoallv(works,lensend,locsend,mpi_r_mpi,
+      call mpi_alltoallv(works,lensend,locsend,mpi_r_mpi, !gwv
      &                   workr,lenrecv,locrecv,mpi_r_mpi,
      &                   mc_comp,ierr)
+      call mpi_barrier (mc_comp,ierr)
 !
 !$omp parallel do private(n,mn,i,j,k)
       do n=1,nodes 
